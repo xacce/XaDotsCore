@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+using System;
 using Unity.Physics;
 using Unity.Physics.Authoring;
 
@@ -20,3 +21,4 @@ namespace XaDotsCore.Editor
         }
     }
 }
+#endif

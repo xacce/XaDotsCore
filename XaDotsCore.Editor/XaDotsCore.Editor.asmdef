@@ -2,6 +2,7 @@
   "name": "XaDotsCore.Editor",
   "references": [
     "Unity.Physics",
+    "Unity.Physics.Authoring",
     "Unity.Entities",
     "Unity.Entities.Hybrid",
     "Unity.Collections",
