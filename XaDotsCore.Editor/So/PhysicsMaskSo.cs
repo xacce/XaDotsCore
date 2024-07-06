@@ -1,4 +1,5 @@
-﻿using Unity.Physics;
+﻿#if UNITY_EDITOR && UNITY_PHYSICS_CUSTOM
+using Unity.Physics;
 using UnityEngine;
 using XaDotsCore.Editor.DotsCore.Utils.Components;
 
@@ -13,3 +14,4 @@ namespace XaDotsCore.Editor.So
         public DotsPhysicsMask mask => mask_s;
     }
 }
+#endif

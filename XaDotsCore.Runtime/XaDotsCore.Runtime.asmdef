@@ -1,18 +1,17 @@
 ﻿{
   "name": "XaDotsCore.Runtime",
   "references": [
-    "Unity.Physics",
     "Unity.Entities",
     "Unity.Entities.Hybrid",
     "Unity.Collections",
-    "Unity.Physics.Custom",
     "Unity.Mathematics",
     "Unity.Burst",
     "XaDotsCore.Editor"
   ],
+  "includePlatforms": [],
   "excludePlatforms": [],
   "allowUnsafeCode": true,
-  "overrideReferences": false,
+  "overrideReferences": true,
   "precompiledReferences": [],
   "autoReferenced": true,
   "defineConstraints": [],

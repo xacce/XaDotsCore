@@ -1,10 +1,13 @@
-﻿#if UNITY_EDITOR
+﻿#if UNITY_EDITOR 
 using System;
+#if UNITY_PHYSICS_CUSTOM
 using Unity.Physics;
 using Unity.Physics.Authoring;
+#endif
 
 namespace XaDotsCore.Editor
 {
+#if UNITY_PHYSICS_CUSTOM
     namespace DotsCore.Utils.Components
     {
         [Serializable]
@@ -20,5 +23,6 @@ namespace XaDotsCore.Editor
             }
         }
     }
+#endif
 }
 #endif
