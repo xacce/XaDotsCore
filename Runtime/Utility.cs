@@ -1,7 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 using Unity.Mathematics;
 
-namespace XaDotsCore.Runtime
+namespace Core.Runtime
 {
     public static class Utility
     {

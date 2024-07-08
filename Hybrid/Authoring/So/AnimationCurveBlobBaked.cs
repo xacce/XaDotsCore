@@ -1,15 +1,20 @@
 ﻿#if UNITY_EDITOR
+using Core.Hybrid;
+using Core.Runtime;
 using Unity.Entities;
 using UnityEngine;
-using XaDotsCore.Editor.So;
 
-namespace XaDotsCore.Runtime.Authoring.So
+namespace Core.Hybrid
 {
     [CreateAssetMenu(menuName = "XaDotsCore/Animation curve")]
     public class AnimationCurveBlobBaked : BakedScriptableObject<AnimationCurveBlob>
     {
         [SerializeField] private AnimationCurve curve_s;
         [SerializeField] private int precision_s = 64;
+
+        public AnimationCurve curve => curve_s;
+
+        public int precision => precision_s;
 
         public override void Bake(ref AnimationCurveBlob data, ref BlobBuilder builder)
         {

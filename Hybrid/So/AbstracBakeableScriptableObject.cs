@@ -3,7 +3,7 @@ using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
 
-namespace XaDotsCore.Editor.So
+namespace Core.Hybrid
 {
     public abstract class BakedScriptableObject<T> : ScriptableObject where T : unmanaged
     {

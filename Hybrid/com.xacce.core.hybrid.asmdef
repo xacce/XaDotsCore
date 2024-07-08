@@ -1,12 +1,14 @@
-﻿{
-  "name": "XaDotsCore.Runtime",
+{
+  "name": "com.xacce.core.hybrid",
+  "rootNamespace": "Core.Hybrid",
   "references": [
     "Unity.Entities",
     "Unity.Entities.Hybrid",
     "Unity.Collections",
-    "Unity.Mathematics",
-    "Unity.Burst",
-    "XaDotsCore.Editor"
+    "Unity.Physics.Custom",
+    "Unity.Physics",
+    "Unity.Physics.Hybrid",
+    "com.xacce.core.runtime"
   ],
   "includePlatforms": [],
   "excludePlatforms": [],
@@ -15,5 +17,6 @@
   "precompiledReferences": [],
   "autoReferenced": true,
   "defineConstraints": [],
+  "versionDefines": [],
   "noEngineReferences": false
 }

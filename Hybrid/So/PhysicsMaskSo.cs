@@ -1,9 +1,10 @@
-﻿#if UNITY_EDITOR && UNITY_PHYSICS_CUSTOM
+﻿#if UNITY_EDITOR
+using Core.Hybrid;
 using Unity.Physics;
 using UnityEngine;
-using XaDotsCore.Editor.DotsCore.Utils.Components;
 
-namespace XaDotsCore.Editor.So
+//sss
+namespace Core.Hybrid
 {
     [CreateAssetMenu(menuName = "Xadots/So/Physics mask")]
     public class PhysicsMaskSo : ScriptableObject

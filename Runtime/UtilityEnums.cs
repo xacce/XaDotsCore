@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace XaDotsCore.Runtime
+namespace Core.Runtime
 {
     [Flags]
     public enum XaObjectType
@@ -9,5 +9,6 @@ namespace XaDotsCore.Runtime
         Dynamic = 1,
         Static = 2,
         Character = 4,
+        Trigger = 8,
     }
 }

@@ -1,6 +1,6 @@
 {
-  "name": "com.xacce.xadotscore",
-  "displayName": "XaDotsCore",
+  "name": "com.xacce.core",
+  "displayName": "Xacce - Core",
   "version": "0.0.2",
   "unity": "2022.3",
   "description": "",

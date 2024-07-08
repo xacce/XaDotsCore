@@ -3,8 +3,17 @@ using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
 
-namespace XaDotsCore.Runtime
+namespace Core.Runtime
 {
+    public partial struct Triggerable : IComponentData
+    {
+    }
+
+    public partial struct Triggered : IComponentData
+    {
+
+    }
+
     [BurstCompile]
     public struct AnimationCurveBlob
     {

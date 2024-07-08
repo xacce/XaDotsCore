@@ -1,9 +1,8 @@
 ﻿using Unity.Entities.Serialization;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace GridWorld.Authoring
+namespace Core.Hybrid
 {
     [CreateAssetMenu(menuName = "Xadots/SubScene/Create reference")]
     public class SubSceneReference : ScriptableObject
