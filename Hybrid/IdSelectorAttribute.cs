@@ -5,9 +5,9 @@ using UnityEngine;
 namespace Core.Hybrid
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
-    public class BlobBakerIdAttribute : PropertyAttribute
+    public class IdSelectorAttribute : PropertyAttribute
     {
-        public BlobBakerIdAttribute(Type t)
+        public IdSelectorAttribute(Type t)
         {
             this.t = t;
         }

@@ -5,7 +5,7 @@
 
     }
 
-    public interface IUniqueBlobSoBaker
+    public interface IUniqueIdProvider
     {
         public int id { get; }
     }
