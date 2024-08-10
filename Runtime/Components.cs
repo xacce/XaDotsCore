@@ -14,6 +14,11 @@ namespace Core.Runtime
 
     }
 
+    public partial struct DynamicObjectVelocity : IComponentData
+    {
+        public float3 velocity;
+    }
+
     [BurstCompile]
     public struct AnimationCurveBlob
     {
