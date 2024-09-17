@@ -37,4 +37,22 @@ namespace Core.Runtime
             return math.lerp(samples[sampleIndexBelow], samples[sampleIndexBelow + 1], indexRemainder);
         }
     }
+    [BurstCompile]
+    public struct AnimationCurveFloat3Blob
+    {
+        public BlobArray<float3> samples;
+        public int length;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [BurstCompile]
+        public float3 GetValueAtTime(float time)
+        {
+            if (time < 0) time = 0;
+            var approxSampleIndex = (length - 1) * time;
+            var sampleIndexBelow = (int)math.floor(approxSampleIndex);
+            if (sampleIndexBelow >= length - 1) return samples[length - 1];
+            var indexRemainder = approxSampleIndex - sampleIndexBelow;
+            return math.lerp(samples[sampleIndexBelow], samples[sampleIndexBelow + 1], indexRemainder);
+        }
+    }
 }

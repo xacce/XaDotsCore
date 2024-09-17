@@ -10,7 +10,7 @@ namespace Core.Hybrid
         public BlobAssetReference<T> Bake(IBaker baker)
         {
             BlobBuilder builder = new BlobBuilder(Allocator.Temp);
-            ref T definition = ref builder.ConstructRoot<T>();
+            ref var definition = ref builder.ConstructRoot<T>();
 
             Bake(ref definition, ref builder);
 
@@ -22,6 +22,19 @@ namespace Core.Hybrid
 
             return blobReference;
         }
+        
+        public BlobAssetReference<T> Bake()
+        {
+            BlobBuilder builder = new BlobBuilder(Allocator.Temp);
+            ref T definition = ref builder.ConstructRoot<T>();
+
+            Bake(ref definition, ref builder);
+
+            BlobAssetReference<T> blobReference = builder.CreateBlobAssetReference<T>(Allocator.Persistent);
+            builder.Dispose();
+            return blobReference;
+        }
+        
         public abstract void Bake(ref T data, ref BlobBuilder blobBuilder);
     }
 }

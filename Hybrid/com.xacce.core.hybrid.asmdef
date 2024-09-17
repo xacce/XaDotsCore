@@ -5,6 +5,7 @@
     "Unity.Entities",
     "Unity.Entities.Hybrid",
     "Unity.Collections",
+    "Unity.Mathematics",
     "Unity.Physics.Custom",
     "Unity.Physics",
     "Unity.Physics.Hybrid",

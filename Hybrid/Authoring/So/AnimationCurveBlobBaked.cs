@@ -1,4 +1,5 @@
 ﻿#if UNITY_EDITOR
+using System;
 using Core.Hybrid;
 using Core.Runtime;
 using Unity.Entities;
@@ -10,7 +11,7 @@ namespace Core.Hybrid
     public class AnimationCurveBlobBaked : BakedScriptableObject<AnimationCurveBlob>
     {
         [SerializeField] private AnimationCurve curve_s;
-        [SerializeField] private int precision_s = 64;
+        [SerializeField] private int precision_s = 0;
 
         public AnimationCurve curve => curve_s;
 
@@ -27,6 +28,7 @@ namespace Core.Hybrid
                 array[i] = value;
             }
         }
+       
     }
 }
 #endif
