@@ -1,4 +1,5 @@
-﻿using Unity.Entities.Serialization;
+﻿#if UNITY_EDITOR
+using Unity.Entities.Serialization;
 using UnityEditor;
 using UnityEngine;
 
@@ -12,3 +13,4 @@ namespace Core.Hybrid
         public EntitySceneReference AsReference() => new EntitySceneReference(sceneAsset_s);
     }
 }
+#endif
