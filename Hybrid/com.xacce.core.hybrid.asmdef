@@ -1,23 +1,30 @@
 {
-  "name": "com.xacce.core.hybrid",
-  "rootNamespace": "Core.Hybrid",
-  "references": [
-    "Unity.Entities",
-    "Unity.Entities.Hybrid",
-    "Unity.Collections",
-    "Unity.Mathematics",
-    "Unity.Physics.Custom",
-    "Unity.Physics",
-    "Unity.Physics.Hybrid",
-    "com.xacce.core.runtime"
-  ],
-  "includePlatforms": [],
-  "excludePlatforms": [],
-  "allowUnsafeCode": true,
-  "overrideReferences": true,
-  "precompiledReferences": [],
-  "autoReferenced": true,
-  "defineConstraints": [],
-  "versionDefines": [],
-  "noEngineReferences": false
+    "name": "com.xacce.core.hybrid",
+    "rootNamespace": "Core.Hybrid",
+    "references": [
+        "Unity.Entities",
+        "Unity.Entities.Hybrid",
+        "Unity.Collections",
+        "Unity.Mathematics",
+        "Unity.Physics.Custom",
+        "Unity.Physics",
+        "Unity.Physics.Hybrid",
+        "Unity.Localization",
+        "com.xacce.core.runtime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": true,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.localization",
+            "expression": "1",
+            "define": "LOCALIZATION_PACKAGE_EXISTS"
+        }
+    ],
+    "noEngineReferences": false
 }
