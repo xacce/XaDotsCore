@@ -9,6 +9,7 @@
         "Unity.Physics.Custom",
         "Unity.Physics",
         "Unity.Physics.Hybrid",
+        "Unity.Transforms",
         "Unity.Localization",
         "com.xacce.core.runtime"
     ],
