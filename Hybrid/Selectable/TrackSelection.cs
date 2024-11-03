@@ -69,6 +69,7 @@ namespace Selectable
         private void DirtyMechanics()
         {
             var last = SceneView.lastActiveSceneView;
+            if(!last) return;
             var worlds = World.All;
             for (int i = 0; i < worlds.Count; i++)
             {
