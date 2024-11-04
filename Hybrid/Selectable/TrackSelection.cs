@@ -53,8 +53,11 @@ namespace Selectable
         private void OnChanged()
         {
             var active = Selection.activeTransform;
-            if (active != null && active.TryGetComponent(out UnityEditorLiveTrackingSelectedAuthoring live))
+            if (active != null)
             {
+                var live = active.GetComponentInParent<UnityEditorLiveTrackingSelectedAuthoring>();
+                if (live == null) return;
+
                 if (_previous != null && _previous.transform != null) _previous.Toggle(false);
                 _previous = live;
                 live.Toggle(true);
@@ -69,7 +72,7 @@ namespace Selectable
         private void DirtyMechanics()
         {
             var last = SceneView.lastActiveSceneView;
-            if(!last) return;
+            if (!last) return;
             var worlds = World.All;
             for (int i = 0; i < worlds.Count; i++)
             {
