@@ -11,7 +11,15 @@ namespace Core.Runtime
 
     public partial struct Triggered : IComponentData
     {
+    }
 
+    public partial struct RootParent : IComponentData
+    {
+        public Entity value;
+    }
+
+    public partial struct AutoDiscoverRootParentTag : IComponentData
+    {
     }
 
     public partial struct DynamicObjectVelocity : IComponentData
@@ -37,6 +45,7 @@ namespace Core.Runtime
             return math.lerp(samples[sampleIndexBelow], samples[sampleIndexBelow + 1], indexRemainder);
         }
     }
+
     [BurstCompile]
     public struct AnimationCurveFloat3Blob
     {
