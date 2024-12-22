@@ -1,10 +1,39 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Runtime.CompilerServices;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Tables;
 
 namespace Core.Runtime
 {
+    public partial struct LocalizationStringTableReferenceBaked
+    {
+        public Guid table;
+        public long key;
+
+        public static implicit operator LocalizationStringTableReferenceBaked(LocalizedString str)
+        {
+            return new LocalizationStringTableReferenceBaked()
+            {
+                table = str.TableReference.TableCollectionNameGuid,
+                key = str.TableEntryReference.KeyId,
+            };
+        }
+
+        public static explicit operator TableReference(LocalizationStringTableReferenceBaked str)
+        {
+            return str.table;
+        }
+
+        public static explicit operator TableEntryReference(LocalizationStringTableReferenceBaked str)
+        {
+            return str.key;
+        }
+    }
+
+
     public partial struct Triggerable : IComponentData
     {
     }

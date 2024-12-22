@@ -8,7 +8,8 @@
     "Unity.Mathematics",
     "Unity.Burst",
     "Unity.Physics.Custom",
-    "Unity.Transforms"
+    "Unity.Transforms",
+    "Unity.Localization"
   ],
   "includePlatforms": [],
   "excludePlatforms": [],
