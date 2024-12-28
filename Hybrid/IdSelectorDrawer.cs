@@ -28,7 +28,6 @@ namespace GameReady.Ailments.Editor
             var objectValue = EditorGUI.ObjectField(new Rect(position.x, position.y, position.width - 16f, position.height), label, currentObject, type, false);
             if (objectValue is not IUniqueIdProvider un)
             {
-                Debug.LogError($"Attribute: {attribute}, property: {property.displayName} is not a IUniqueBlobSoBaker interface ");
                 return;
             }
             if (objectValue != null)
