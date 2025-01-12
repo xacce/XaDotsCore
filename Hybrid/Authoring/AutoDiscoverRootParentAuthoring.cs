@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Core.Hybrid.Hybrid.Authoring
 {
+    [DisallowMultipleComponent]
     public class AutoDiscoverRootParentAuthoring:MonoBehaviour
     {
         private class AutoDiscoverRootParentBaker : Baker<AutoDiscoverRootParentAuthoring>
