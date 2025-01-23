@@ -10,7 +10,7 @@ namespace Core.Hybrid
         {
             public override void Bake(TriggerableAuthoring authoring)
             {
-                var e = GetEntity(TransformUsageFlags.None);
+                var e = GetEntity(TransformUsageFlags.WorldSpace);
                 AddComponent<Triggerable>(e);
             }
         }

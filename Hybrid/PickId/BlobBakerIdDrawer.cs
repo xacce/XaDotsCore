@@ -27,7 +27,6 @@ namespace GameReady.Ailments.Editor
                         Debug.LogError($"U are trying to extract id from some object, but u didnt add IUniqueIdProvider interface. {asset} ", asset);
                     }
                 }
-                Debug.Log("KEKWAITTT");
                 property.intValue = last + 1;
             }
 

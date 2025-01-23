@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Collections;
 using Unity.Collections.LowLevel.Unsafe;
 using Unity.Entities;
@@ -113,6 +114,21 @@ namespace Core.Runtime.Collections
             UnsafeUtility.MemCpy(buffer, arrayBuffer, length * (long)size);
 
             NoAllocHelpers.ResizeList(list, newLength);
+        }
+
+
+       
+    }
+
+    public static class E
+    {
+        public static void CopyTo<T>(this IEnumerable<T> fr, BlobBuilderArray<T> t) where T : unmanaged
+        {
+            var enumerable = fr as T[] ?? fr.ToArray();
+            for (int i = 0; i < enumerable.Count(); i++)
+            {
+                t[i] = enumerable.ElementAt(i);
+            }
         }
     }
 }

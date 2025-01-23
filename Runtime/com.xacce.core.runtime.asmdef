@@ -9,7 +9,8 @@
     "Unity.Burst",
     "Unity.Physics.Custom",
     "Unity.Transforms",
-    "Unity.Localization"
+    "Unity.Localization",
+    "Unity.Scenes"
   ],
   "includePlatforms": [],
   "excludePlatforms": [],
