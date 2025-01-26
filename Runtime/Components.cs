@@ -93,4 +93,9 @@ namespace Core.Runtime
             return math.lerp(samples[sampleIndexBelow], samples[sampleIndexBelow + 1], indexRemainder);
         }
     }
+
+    public partial struct GameReadySingleton : IComponentData
+    {
+        
+    }
 }
