@@ -27,7 +27,6 @@ namespace Core.Hybrid
         {
             BlobBuilder builder = new BlobBuilder(Allocator.Temp);
             ref T definition = ref builder.ConstructRoot<T>();
-
             Bake(ref definition, ref builder);
 
             BlobAssetReference<T> blobReference = builder.CreateBlobAssetReference<T>(Allocator.Persistent);
