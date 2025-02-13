@@ -3,11 +3,14 @@ using System.Runtime.CompilerServices;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
+#if LOCALIZATION_PACKAGE_EXISTS
 using UnityEngine.Localization;
 using UnityEngine.Localization.Tables;
+#endif
 
 namespace Core.Runtime
 {
+#if LOCALIZATION_PACKAGE_EXISTS
     public partial struct LocalizationStringTableReferenceBaked
     {
         public Guid table;
@@ -33,7 +36,7 @@ namespace Core.Runtime
         }
     }
 
-
+#endif
     public partial struct Triggerable : IComponentData
     {
     }
@@ -96,6 +99,5 @@ namespace Core.Runtime
 
     public partial struct GameReadySingleton : IComponentData
     {
-        
     }
 }

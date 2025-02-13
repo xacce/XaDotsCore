@@ -19,5 +19,12 @@
   "precompiledReferences": [],
   "autoReferenced": true,
   "defineConstraints": [],
-  "noEngineReferences": false
+  "noEngineReferences": false,
+  "versionDefines": [
+    {
+      "name": "com.unity.localization",
+      "expression": "1",
+      "define": "LOCALIZATION_PACKAGE_EXISTS"
+    }
+  ]
 }
