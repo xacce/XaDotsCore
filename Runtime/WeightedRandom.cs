@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
@@ -15,7 +16,7 @@ namespace DotsCore.Utils
     [BurstCompile]
     public static class EntityRandomWeight
     {
-        [BurstCompile]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool GetRandomFromFloats(in NativeArray<float3> items, ref Random rng, out float3 outT)
         {
             var weightSum = 0f;
@@ -44,7 +45,7 @@ namespace DotsCore.Utils
 
 
 
-        [BurstCompile]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool GetRandomWeighted(in NativeHashMap<int, float> items, ref Random rng, out int outT)
         {
             var weightSum = 0f;
@@ -71,7 +72,7 @@ namespace DotsCore.Utils
             return false;
         }
         
-        [BurstCompile]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool GetRandomWeighted<T>(ref BlobArray<T> items, in float weightSum, ref Random rng, out int index) where T : unmanaged, IWeighted
         {
             var value = rng.NextFloat(0, weightSum);
@@ -89,7 +90,7 @@ namespace DotsCore.Utils
             return false;
         }
         
-        [BurstCompile]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool GetRandomWeighted(ref BlobArray<float> items, in float weightSum, ref Random rng, out int index)
         {
             var value = rng.NextFloat(0, weightSum);
@@ -108,8 +109,26 @@ namespace DotsCore.Utils
             return false;
         }
         
-        [BurstCompile]
-        public static bool GetRandomWeighted<T>(ref NativeList<T> items, in float weightSum, ref Random rng, out int index) where T : unmanaged, IWeighted
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool GetRandomWeighted<T>(in NativeList<T> items, in float weightSum, ref Random rng, out int index) where T : unmanaged, IWeighted
+        {
+            var value = rng.NextFloat(0, weightSum);
+            var current = 0f;
+            for (int i = 0; i < items.Length; i++)
+            {
+                current += items[i].weight;
+                if (current > value)
+                {
+                    index = i;
+                    return true;
+                }
+            }
+            index = 0;
+            return false;
+        }
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool GetRandomWeighted<T>(in DynamicBuffer<T> items, in float weightSum, ref Random rng, out int index) where T : unmanaged, IWeighted
         {
             var value = rng.NextFloat(0, weightSum);
             var current = 0f;

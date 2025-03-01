@@ -22,6 +22,17 @@ namespace Core.Runtime.Collections
             void* managedBuffer = UnsafeUtility.AddressOf(ref array[0]);
             void* nativeBuffer = nativeSlice.GetUnsafePtr();
             UnsafeUtility.MemCpy(managedBuffer, nativeBuffer, byteLength);
+        }     
+        public static unsafe void CopyToManaged<T>(
+            this DynamicBuffer<T> data,
+            T[] array)
+            where T :unmanaged
+        {
+            var nativeSlice = data.AsNativeArray();
+            int byteLength = nativeSlice.Length * UnsafeUtility.SizeOf<T>();
+            void* managedBuffer = UnsafeUtility.AddressOf(ref array[0]);
+            void* nativeBuffer = nativeSlice.GetUnsafePtr();
+            UnsafeUtility.MemCpy(managedBuffer, nativeBuffer, byteLength);
         }
 
         /// <summary>
