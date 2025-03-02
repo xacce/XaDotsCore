@@ -1,14 +1,16 @@
-﻿#if UNITY_EDITOR
+﻿
+
 using Unity.Entities;
 using UnityEditor;
 using UnityEngine;
 
 namespace Selectable
 {
+
     public struct UnityEditorLiveTrackingSelected : IComponentData
     {
     }
-
+#if UNITY_EDITOR
     public class UnityEditorLiveTrackingSelectedAuthoring : MonoBehaviour
     {
         [SerializeField] private bool _selected;
@@ -29,5 +31,5 @@ namespace Selectable
             }
         }
     }
-}
 #endif
+}
