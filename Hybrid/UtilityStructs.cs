@@ -1,4 +1,4 @@
-﻿#if UNITY_EDITOR && UNITY_PHYSICS_CUSTOM
+﻿#if UNITY_PHYSICS_CUSTOM
 
 using System;
 using Unity.Physics;
