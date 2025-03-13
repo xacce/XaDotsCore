@@ -45,6 +45,11 @@ namespace Core.Runtime
     {
     }
 
+    public partial struct TriggeredBy : IComponentData
+    {
+        public Entity actor;
+    }
+
     public partial struct RootParent : IComponentData
     {
         public Entity value;
