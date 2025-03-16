@@ -11,26 +11,26 @@ using UnityEngine.Localization.Tables;
 namespace Core.Runtime
 {
 #if LOCALIZATION_PACKAGE_EXISTS
-    public partial struct LocalizationStringTableReferenceBaked
+    public partial struct LocalizedStringTableReferenceBaked
     {
         public Guid table;
         public long key;
 
-        public static implicit operator LocalizationStringTableReferenceBaked(LocalizedString str)
+        public static implicit operator LocalizedStringTableReferenceBaked(LocalizedString str)
         {
-            return new LocalizationStringTableReferenceBaked()
+            return new LocalizedStringTableReferenceBaked()
             {
                 table = str.TableReference.TableCollectionNameGuid,
                 key = str.TableEntryReference.KeyId,
             };
         }
 
-        public static explicit operator TableReference(LocalizationStringTableReferenceBaked str)
+        public static explicit operator TableReference(LocalizedStringTableReferenceBaked str)
         {
             return str.table;
         }
 
-        public static explicit operator TableEntryReference(LocalizationStringTableReferenceBaked str)
+        public static explicit operator TableEntryReference(LocalizedStringTableReferenceBaked str)
         {
             return str.key;
         }
