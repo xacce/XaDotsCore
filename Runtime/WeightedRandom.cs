@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.Burst;
 using Unity.Collections;
@@ -11,6 +12,11 @@ namespace DotsCore.Utils
     public interface IWeighted
     {
         public float weight { get; }
+    }
+
+    public interface IWeightedCollector<T> where T : unmanaged, IWeighted
+    {
+        public bool IsValid(T data);
     }
 
     [BurstCompile]
@@ -44,7 +50,6 @@ namespace DotsCore.Utils
         }
 
 
-
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool GetRandomWeighted(in NativeHashMap<int, float> items, ref Random rng, out int outT)
         {
@@ -71,7 +76,7 @@ namespace DotsCore.Utils
             outT = default;
             return false;
         }
-        
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool GetRandomWeighted<T>(ref BlobArray<T> items, in float weightSum, ref Random rng, out int index) where T : unmanaged, IWeighted
         {
@@ -86,10 +91,11 @@ namespace DotsCore.Utils
                     return true;
                 }
             }
+
             index = 0;
             return false;
         }
-        
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool GetRandomWeighted(ref BlobArray<float> items, in float weightSum, ref Random rng, out int index)
         {
@@ -108,7 +114,7 @@ namespace DotsCore.Utils
             index = 0;
             return false;
         }
-        
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool GetRandomWeighted<T>(in NativeList<T> items, in float weightSum, ref Random rng, out int index) where T : unmanaged, IWeighted
         {
@@ -123,10 +129,11 @@ namespace DotsCore.Utils
                     return true;
                 }
             }
+
             index = 0;
             return false;
         }
-        
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool GetRandomWeighted<T>(in DynamicBuffer<T> items, in float weightSum, ref Random rng, out int index) where T : unmanaged, IWeighted
         {
@@ -141,12 +148,37 @@ namespace DotsCore.Utils
                     return true;
                 }
             }
+
+            index = 0;
+            return false;
+        }
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool GetRandomWeighted<T,TC>(in NativeArray<T> items, ref Random rng,TC collector, out int index) where T : unmanaged, IWeighted where TC : unmanaged, IWeightedCollector<T>
+        {
+            var weightSum = 0f;
+
+            for (int i = 0; i < items.Length; i++)
+            {
+               if(collector.IsValid(items[i])) weightSum += items[i].weight;
+            }
+            var value = rng.NextFloat(0, weightSum);
+            var current = 0f;
+            for (int i = 0; i < items.Length; i++)
+            {
+                if(!collector.IsValid(items[i]))  continue;
+                current += items[i].weight;
+                if (current > value)
+                {
+                    index = i;
+                    return true;
+                }
+            }
+
             index = 0;
             return false;
         }
 #if LATIOS
-
-
         [BurstCompile]
         public static bool GetRandomWeightedCustom<T>(in NativeHashMap<T, float> items, ref SystemRng rng, out T outT) where T : unmanaged, IEquatable<T> //latios
         {
