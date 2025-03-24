@@ -1,4 +1,5 @@
 ﻿#if UNITY_EDITOR
+using System;
 using Core.Hybrid;
 using UnityEditor;
 using UnityEngine;
@@ -14,20 +15,7 @@ namespace GameReady.Ailments.Editor
             var type = (attribute as PickIdAttribute).t;
             if (GUI.Button(new Rect(position.x, position.y, 32f, position.height), "Pick"))
             {
-                AssetDatabase.SaveAssets();
-                var last = 0;
-                foreach (var asset in Helpers.FindAllAssetsByType(type))
-                {
-                    if (asset is IUniqueIdProvider idProvider)
-                    {
-                        if (idProvider.id > last) last = idProvider.id;
-                    }
-                    else
-                    {
-                        Debug.LogError($"U are trying to extract id from some object, but u didnt add IUniqueIdProvider interface. {asset} ", asset);
-                    }
-                }
-                property.intValue = last + 1;
+                Pick(type,property);
             }
 
             EditorGUI.PropertyField(new Rect(position.x + 32, position.y, position.width - 32, position.height), property);
@@ -35,6 +23,23 @@ namespace GameReady.Ailments.Editor
 
         }
 
+        public static void Pick(Type type,SerializedProperty prop)
+        {
+            AssetDatabase.SaveAssets();
+            var last = 0;
+            foreach (var asset in Helpers.FindAllAssetsByType(type))
+            {
+                if (asset is IUniqueIdProvider idProvider)
+                {
+                    if (idProvider.id > last) last = idProvider.id;
+                }
+                else
+                {
+                    Debug.LogError($"U are trying to extract id from some object, but u didnt add IUniqueIdProvider interface. {asset} ", asset);
+                }
+            }
+            prop.intValue = last + 1;
+        }
     }
 }
 #endif
