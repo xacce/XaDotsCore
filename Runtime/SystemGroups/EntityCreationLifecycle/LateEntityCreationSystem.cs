@@ -21,7 +21,15 @@ namespace Core.Runtime.SystemGroups.EntityCreationLifecycle
 
     [UpdateInGroup(typeof(InitializationSystemGroup))]
     [UpdateAfter(typeof(SceneSystemGroup))]
-    public partial class EarlyEntitySetupSystem : ComponentSystemGroup
+    public partial class EarlyEntityLateSpawnSystem : ComponentSystemGroup
     {
+        //Spawns entities in the NEXT frame (ecb begininitialization)
+    }
+
+    [UpdateInGroup(typeof(InitializationSystemGroup))]
+    [UpdateAfter(typeof(SceneSystemGroup))]
+    public partial class EarlyEntityInitializationSpawnSystem : ComponentSystemGroup
+    {
+        //Spawns entities in initialization state (ecb endinitialization)
     }
 }
