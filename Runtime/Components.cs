@@ -37,7 +37,7 @@ namespace Core.Runtime
     }
 
 #endif
-    public partial struct Triggerable : IComponentData
+    public partial struct NotUsedFreeToRemove : IComponentData
     {
     }
 
