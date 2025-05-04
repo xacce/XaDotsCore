@@ -22,11 +22,12 @@ namespace Core.Runtime.Collections
             void* managedBuffer = UnsafeUtility.AddressOf(ref array[0]);
             void* nativeBuffer = nativeSlice.GetUnsafePtr();
             UnsafeUtility.MemCpy(managedBuffer, nativeBuffer, byteLength);
-        }     
+        }
+
         public static unsafe void CopyToManaged<T>(
             this DynamicBuffer<T> data,
             T[] array)
-            where T :unmanaged
+            where T : unmanaged
         {
             var nativeSlice = data.AsNativeArray();
             int byteLength = nativeSlice.Length * UnsafeUtility.SizeOf<T>();
@@ -126,9 +127,6 @@ namespace Core.Runtime.Collections
 
             NoAllocHelpers.ResizeList(list, newLength);
         }
-
-
-       
     }
 
     public static class E
@@ -139,6 +137,16 @@ namespace Core.Runtime.Collections
             for (int i = 0; i < enumerable.Count(); i++)
             {
                 t[i] = enumerable.ElementAt(i);
+            }
+        }
+
+        public static void Remove<T>(this DynamicBuffer<T> buffer, T item) where T : unmanaged, IEquatable<T>
+        {
+            var arr = buffer.AsNativeArray();
+            var index = arr.IndexOf(item);
+            if (index != -1)
+            {
+                buffer.RemoveAt(index);
             }
         }
     }
