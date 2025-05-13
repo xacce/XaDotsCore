@@ -13,7 +13,7 @@ namespace Core.Hybrid.Hybrid.Authoring
 
 
     [DisallowMultipleComponent]
-    class UnparentAuthoring : MonoBehaviour
+    public class UnparentAuthoring : MonoBehaviour
     {
         class _ : Baker<UnparentAuthoring>
         {
