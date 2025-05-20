@@ -12,11 +12,6 @@ namespace Core.Runtime.SystemGroups.EntityCreationLifecycle
     // PostLateEntityCreationSystem использовать BeginIni ecb
     // EarlyEntitySetupSystem использовать EndIni ecb
 
-    [UpdateInGroup(typeof(SimulationSystemGroup))]
-    [UpdateAfter(typeof(EndSimulationEntityCommandBufferSystem))]
-    public partial class PostLateEntityCreationSystem : ComponentSystemGroup
-    {
-    }
 
 
     [UpdateInGroup(typeof(InitializationSystemGroup))]
