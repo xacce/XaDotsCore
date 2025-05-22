@@ -237,13 +237,13 @@
                 internal uint meta;
 
                 [Unity.Properties.CreateProperty(ReadOnly = true)]
-                internal TKey key;
+                public TKey key;
 
                 [Unity.Properties.CreateProperty(ReadOnly = true)]
-                internal TValue value;
+                public TValue value;
 
                 [Unity.Properties.CreateProperty(ReadOnly = true)]
-                internal bool isOccupied
+                public bool isOccupied
                 {
                     get => (meta & 0x80000000) != 0;
                     set => meta = (meta & 0x7fffffff) | math.select(0u, 1u, value) << 31;
