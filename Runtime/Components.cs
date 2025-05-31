@@ -41,6 +41,11 @@ namespace Core.Runtime
     {
     }
 
+
+    public partial struct Bump : IComponentData
+    {
+        
+    }
     public partial struct Triggered : IComponentData
     {
     }
