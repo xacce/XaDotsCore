@@ -16,6 +16,32 @@ namespace Core.Runtime
             data = default;
             return false;
         }
+
+        //Do not call inside runtime loop. Only for initialization purposes
+        public static Entity GetSingletonEntityAndForget<T>(this EntityManager state) where T : unmanaged, IComponentData
+        {
+            var q = state.CreateEntityQuery(ComponentType.ReadOnly<T>());
+            var entity = q.GetSingletonEntity();
+            q.Dispose();
+            return entity;
+        }   
+        //Do not call inside runtime loop. Only for initialization purposes
+        public static T GetSingletonDataAndForget<T>(this EntityManager state) where T : unmanaged, IComponentData
+        {
+            var q = state.CreateEntityQuery(ComponentType.ReadOnly<T>());
+            var data = q.GetSingleton<T>();
+            q.Dispose();
+            return data;
+        }
+
+        //Do not call inside runtime loop. Only for initialization purposes
+        public static Entity GetSingletonBufferEntityAndForget<T>(this EntityManager state) where T : unmanaged, IBufferElementData
+        {
+            var q = state.CreateEntityQuery(ComponentType.ReadOnly<T>());
+            var entity = q.GetSingletonEntity();
+            q.Dispose();
+            return entity;
+        }
     }
 
     public static class SystemStateExtended
