@@ -44,8 +44,8 @@ namespace Core.Runtime
 
     public partial struct Bump : IComponentData
     {
-        
     }
+
     public partial struct Triggered : IComponentData
     {
     }
@@ -86,6 +86,9 @@ namespace Core.Runtime
             var indexRemainder = approxSampleIndex - sampleIndexBelow;
             return math.lerp(samples[sampleIndexBelow], samples[sampleIndexBelow + 1], indexRemainder);
         }
+
+        public bool IsValid() => length > 0;
+        public static AnimationCurveBlob Null => new AnimationCurveBlob() { length = 0 };
     }
 
     [BurstCompile]
@@ -105,6 +108,9 @@ namespace Core.Runtime
             var indexRemainder = approxSampleIndex - sampleIndexBelow;
             return math.lerp(samples[sampleIndexBelow], samples[sampleIndexBelow + 1], indexRemainder);
         }
+
+         public bool IsValid() => length > 0;
+               public static AnimationCurveFloat3Blob Null => new AnimationCurveFloat3Blob() { length = 0 };
     }
 
     public partial struct GameReadySingleton : IComponentData

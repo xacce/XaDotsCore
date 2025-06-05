@@ -50,6 +50,11 @@ namespace Core.Runtime
         {
             var q = state.GetEntityQuery(ComponentType.ReadOnly<T>());
             return q.GetSingleton<T>();
+        }       
+        public static DynamicBuffer<T> GetSingletonBuffer<T>(this ref SystemState state) where T : unmanaged, IBufferElementData
+        {
+            var q = state.GetEntityQuery(ComponentType.ReadOnly<T>());
+            return q.GetSingletonBuffer<T>();
         }
 
         public static DynamicBuffer<TY> GetSingletonBufferByComponent<T, TY>(this ref SystemState state)
