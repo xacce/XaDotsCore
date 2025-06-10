@@ -46,7 +46,7 @@ namespace Core.Runtime
 
         public static DynamicBuffer<T> GetSingletonBufferAndForget<T>(this EntityManager state) where T : unmanaged, IBufferElementData
         {
-            var q = state.CreateEntityQuery(ComponentType.ReadOnly<T>());
+            var q = state.CreateEntityQuery(ComponentType.ReadWrite<T>());
             var entity = q.GetSingletonBuffer<T>();
             q.Dispose();
             return entity;
@@ -54,7 +54,7 @@ namespace Core.Runtime
 
         public static void SlowUpdateOrCreateSingletonData<T>(this EntityManager state, T data) where T : unmanaged, IComponentData
         {
-            var q = state.CreateEntityQuery(ComponentType.ReadOnly<T>());
+            var q = state.CreateEntityQuery(ComponentType.ReadWrite<T>());
             if (q.TryGetSingletonRW(out RefRW<T> rw))
             {
                 rw.ValueRW = data;
@@ -69,7 +69,7 @@ namespace Core.Runtime
 
         public static void SlowReplaceOrCreateSingletonBuffer<T>(this EntityManager state, NativeArray<T> data) where T : unmanaged, IBufferElementData
         {
-            var q = state.CreateEntityQuery(ComponentType.ReadOnly<T>());
+            var q = state.CreateEntityQuery(ComponentType.ReadWrite<T>());
             DynamicBuffer<T> buffer;
             if (q.TryGetSingletonBuffer(out buffer, false))
             {
@@ -87,7 +87,7 @@ namespace Core.Runtime
 
         public static void SlowReplaceOrCreateSingletonBuffer<T>(this EntityManager state, T[] data) where T : unmanaged, IBufferElementData
         {
-            var q = state.CreateEntityQuery(ComponentType.ReadOnly<T>());
+            var q = state.CreateEntityQuery(ComponentType.ReadWrite<T>());
             DynamicBuffer<T> buffer;
             if (q.TryGetSingletonBuffer(out buffer, false))
             {
