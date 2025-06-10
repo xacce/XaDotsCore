@@ -5,7 +5,8 @@ namespace Core.Runtime.Collections
 {
     public static class BlobArrayUtils
     {
-        public static bool Contains<T>(ref BlobArray<T> array, T item) where T : unmanaged, IEquatable<T>
+       
+        public static bool Contains<T>(this ref BlobArray<T> array, T item) where T : unmanaged, IEquatable<T>
         {
             for (int i = 0; i < array.Length; i++)
             {
@@ -17,5 +18,6 @@ namespace Core.Runtime.Collections
 
             return false;
         }
+       
     }
 }
