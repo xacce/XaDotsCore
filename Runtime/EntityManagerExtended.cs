@@ -16,6 +16,17 @@ namespace Core.Runtime
             data = default;
             return false;
         }
+  public static bool TryGetBuffer<T>(this EntityManager em, Entity entity, out DynamicBuffer<T> data) where T : unmanaged, IBufferElementData
+        {
+            if (em.HasBuffer<T>(entity))
+            {
+                data = em.GetBuffer<T>(entity);
+                return true;
+            }
+
+            data = default;
+            return false;
+        }
 
         //Do not call inside runtime loop. Only for initialization purposes
         public static Entity GetSingletonEntityAndForget<T>(this EntityManager state) where T : unmanaged, IComponentData
@@ -149,7 +160,7 @@ namespace Core.Runtime
 
         public static ref T GetSingletonRW<T>(this ref SystemState state) where T : unmanaged, IComponentData
         {
-            var q = state.GetEntityQuery(ComponentType.ReadOnly<T>());
+            var q = state.GetEntityQuery(ComponentType.ReadWrite<T>());
             return ref q.GetSingletonRW<T>().ValueRW;
         }
     }

@@ -153,8 +153,9 @@ namespace DotsCore.Utils
             return false;
         }
 
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool GetRandomWeighted<T>(in INativeList<T> items, in float weightSum, ref Random rng, out int index) where T : unmanaged, IWeighted
+        public static bool GetRandomWeighted<T>(in DynamicBuffer<T> items, in float weightSum, ref Random rng, out int index) where T : unmanaged, IWeighted
         {
             var value = rng.NextFloat(0, weightSum);
             var current = 0f;
@@ -173,7 +174,7 @@ namespace DotsCore.Utils
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool GetRandomWeighted<T>(in DynamicBuffer<T> items, in float weightSum, ref Random rng, out int index) where T : unmanaged, IWeighted
+        public static bool GetRandomWeighted<T>(in NativeList<T> items, in float weightSum, ref Random rng, out int index) where T : unmanaged, IWeighted
         {
             var value = rng.NextFloat(0, weightSum);
             var current = 0f;
