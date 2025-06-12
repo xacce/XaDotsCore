@@ -1,5 +1,4 @@
-﻿#if UNITY_EDITOR
-using System;
+﻿using System;
 using UnityEngine;
 
 namespace Core.Hybrid
@@ -14,4 +13,3 @@ namespace Core.Hybrid
         public Type t { get; set; }
     }
 }
-#endif

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿#if UNITY_EDITOR
+using System.Linq;
 using Core.Hybrid;
 using Core.Hybrid.Hybrid.PickId;
 using UnityEditor;
@@ -56,3 +57,4 @@ public class PickIdMonoDrawer : PropertyDrawer
         return maxId;
     }
 }
+#endif

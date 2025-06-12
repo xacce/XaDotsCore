@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -27,7 +28,7 @@ namespace Core.Hybrid.Hybrid
                 for (int i = 0; i < enumValues.Length; i++)
                 {
                     ulong flagValue = Convert.ToUInt64(enumValues.GetValue(i));
-                    if (flagValue == 0) continue; 
+                    if (flagValue == 0) continue;
 
                     bool isSet = (currentValue & flagValue) != 0;
                     Rect toggleRect = new Rect(position.x, position.y + (i + 1) * lineHeight, position.width, EditorGUIUtility.singleLineHeight);
@@ -71,3 +72,4 @@ namespace Core.Hybrid.Hybrid
         }
     }
 }
+#endif
