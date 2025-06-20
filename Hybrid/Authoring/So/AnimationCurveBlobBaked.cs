@@ -12,6 +12,7 @@ namespace Core.Hybrid
     {
         [SerializeField] private AnimationCurve curve_s;
         [SerializeField] private int precision_s = 0;
+        [SerializeField] private float globalMultiplier = 1;
 
         public AnimationCurve curve => curve_s;
 
@@ -24,11 +25,10 @@ namespace Core.Hybrid
             for (var i = 0; i < precision_s; i++)
             {
                 var at = (float)i / (precision_s - 1);
-                var value = curve_s.Evaluate(at);
+                var value = curve_s.Evaluate(at) * globalMultiplier;
                 array[i] = value;
             }
         }
-       
     }
 }
 #endif
