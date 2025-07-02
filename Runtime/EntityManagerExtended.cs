@@ -16,7 +16,8 @@ namespace Core.Runtime
             data = default;
             return false;
         }
-  public static bool TryGetBuffer<T>(this EntityManager em, Entity entity, out DynamicBuffer<T> data) where T : unmanaged, IBufferElementData
+
+        public static bool TryGetBuffer<T>(this EntityManager em, Entity entity, out DynamicBuffer<T> data) where T : unmanaged, IBufferElementData
         {
             if (em.HasBuffer<T>(entity))
             {
@@ -44,12 +45,19 @@ namespace Core.Runtime
             var data = q.GetSingleton<T>();
             q.Dispose();
             return data;
+        }     
+        public static T GetSingletonDataFromSystemAndForget<T>(this EntityManager state) where T : unmanaged, IComponentData
+        {
+            var q = new EntityQueryBuilder(Allocator.Temp).WithAll<T>().WithOptions(EntityQueryOptions.IncludeSystems).Build(state);
+            var data = q.GetSingleton<T>();
+            q.Dispose();
+            return data;
         }
 
         //Do not call inside runtime loop. Only for initialization purposes
         public static Entity GetSingletonBufferEntityAndForget<T>(this EntityManager state) where T : unmanaged, IBufferElementData
         {
-            var q =new EntityQueryBuilder(Allocator.Temp).WithAll<T>().Build(state);
+            var q = new EntityQueryBuilder(Allocator.Temp).WithAll<T>().Build(state);
             var entity = q.GetSingletonEntity();
             q.Dispose();
             return entity;
@@ -98,7 +106,7 @@ namespace Core.Runtime
 
         public static void SlowReplaceOrCreateSingletonBuffer<T>(this EntityManager state, T[] data) where T : unmanaged, IBufferElementData
         {
-            var q =new EntityQueryBuilder(Allocator.Temp).WithAllRW<T>().Build(state);
+            var q = new EntityQueryBuilder(Allocator.Temp).WithAllRW<T>().Build(state);
             DynamicBuffer<T> buffer;
             if (q.TryGetSingletonBuffer(out buffer, false))
             {
