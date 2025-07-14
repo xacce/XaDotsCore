@@ -61,6 +61,19 @@ namespace DotsCore.Utils
     public static class EntityRandomWeight
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void FisherYatesShuffle<T>(ref NativeArray<T> areas, ref Random rng) where T : unmanaged
+        {
+            var n = areas.Length;
+            while (n > 1)
+            {
+                var k = rng.NextInt(0, n);
+                n--;
+                var tmp = areas[n];
+                areas[n] = areas[k];
+                areas[k] = tmp;
+            }
+        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool GetRandomFromFloats(in NativeArray<float3> items, ref Random rng, out float3 outT)
         {
             var weightSum = 0f;
