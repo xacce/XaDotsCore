@@ -38,6 +38,18 @@ namespace Core.Runtime
             return entity;
         }
 
+        public static bool TryGetSingletonEntityAndForget<T>(this EntityManager state,out Entity e) where T : unmanaged, IComponentData
+        {
+            var q = new EntityQueryBuilder(Allocator.Temp).WithAll<T>().Build(state);
+            if (q.TryGetSingletonEntity<T>(out e))
+            {
+                q.Dispose();
+                return true;
+            }
+
+            return false;
+        }
+
         //Do not call inside runtime loop. Only for initialization purposes
         public static T GetSingletonDataAndForget<T>(this EntityManager state) where T : unmanaged, IComponentData
         {
@@ -45,7 +57,8 @@ namespace Core.Runtime
             var data = q.GetSingleton<T>();
             q.Dispose();
             return data;
-        }     
+        }
+
         public static T GetSingletonDataFromSystemAndForget<T>(this EntityManager state) where T : unmanaged, IComponentData
         {
             var q = new EntityQueryBuilder(Allocator.Temp).WithAll<T>().WithOptions(EntityQueryOptions.IncludeSystems).Build(state);
