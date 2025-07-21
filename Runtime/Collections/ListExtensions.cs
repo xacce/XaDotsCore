@@ -127,6 +127,16 @@ namespace Core.Runtime.Collections
 
             NoAllocHelpers.ResizeList(list, newLength);
         }
+
+        public static int IndexOf<T>(this DynamicBuffer<T> relationships, T item) where T:unmanaged, IBufferElementData,IEquatable<T>
+        {
+            for (int i = 0; i < relationships.Length; i++)
+            {
+                if (relationships[i].Equals(item)) return i;
+            }
+
+            return -1;
+        }
     }
 
     public static class E
