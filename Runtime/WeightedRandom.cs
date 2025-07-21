@@ -204,6 +204,24 @@ namespace DotsCore.Utils
             index = 0;
             return false;
         }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool GetRandomWeighted<T>(in NativeArray<T> items, in float weightSum, ref Random rng, out int index) where T : unmanaged, IWeighted
+        {
+            var value = rng.NextFloat(0, weightSum);
+            var current = 0f;
+            for (int i = 0; i < items.Length; i++)
+            {
+                current += items[i].weight;
+                if (current > value)
+                {
+                    index = i;
+                    return true;
+                }
+            }
+
+            index = 0;
+            return false;
+        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool GetRandomWeighted<T, TC>(in NativeArray<T> items, ref Random rng, TC collector, out int index)
