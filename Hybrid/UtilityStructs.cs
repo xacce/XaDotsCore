@@ -1,6 +1,7 @@
 ﻿#if UNITY_PHYSICS_CUSTOM
 
 using System;
+using System.Runtime.InteropServices;
 using Unity.Physics;
 using Unity.Physics.Authoring;
 
@@ -17,7 +18,22 @@ namespace Core.Hybrid
             return new CollisionFilter
                 { BelongsTo = belongs.Value, CollidesWith = collide.Value };
         }
+
+        public ulong Pack()
+        {
+            return ((ulong)belongs.Value << 32) | collide.Value;
+        }
+
+        public static CollisionFilter Unpack(ulong packed)
+        {
+            return new CollisionFilter
+            {
+                CollidesWith = (uint)(packed & 0xFFFFFFFF),
+                BelongsTo = (uint)(packed >> 32),
+            };
+        }
     }
 }
+
 
 #endif
