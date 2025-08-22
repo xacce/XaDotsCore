@@ -17,6 +17,10 @@ namespace Core.Hybrid
             return new CollisionFilter
                 { BelongsTo = belongs.Value, CollidesWith = collide.Value };
         }
+        public static explicit operator CollisionFilter(DotsPhysicsMask mask)
+        {
+            return mask.AsFilter();
+        }
     }
 }
 

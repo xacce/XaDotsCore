@@ -12,7 +12,6 @@ namespace Core.Hybrid
         [SerializeField] private DotsPhysicsMask mask_s;
 
         public CollisionFilter asFilter => mask_s.AsFilter();
-        public DotsPhysicsMask mask => mask_s;
     }
 }
 #endif
