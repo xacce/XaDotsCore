@@ -21,7 +21,22 @@ namespace Core.Hybrid
         {
             return mask.AsFilter();
         }
+        
+        public ulong Pack()
+        {
+            return ((ulong)belongs.Value << 32) | collide.Value;
+        }
+
+        public static CollisionFilter Unpack(ulong packed)
+        {
+            return new CollisionFilter
+            {
+                CollidesWith = (uint)(packed & 0xFFFFFFFF),
+                BelongsTo = (uint)(packed >> 32),
+            };
+        }
     }
 }
+
 
 #endif

@@ -38,7 +38,7 @@ namespace Core.Runtime
             return entity;
         }
 
-        public static bool TryGetSingletonEntityAndForget<T>(this EntityManager state,out Entity e) where T : unmanaged, IComponentData
+        public static bool TryGetSingletonEntityAndForget<T>(this EntityManager state, out Entity e) where T : unmanaged, IComponentData
         {
             var q = new EntityQueryBuilder(Allocator.Temp).WithAll<T>().Build(state);
             if (q.TryGetSingletonEntity<T>(out e))
@@ -173,7 +173,7 @@ namespace Core.Runtime
             return q.GetSingleton<TY>();
         }
 
-        public static Entity GetSingletonEntity<T>(this ref SystemState state) where T : unmanaged, IComponentData
+        public static Entity GetSingletonEntity<T>(this ref SystemState state) where T : unmanaged
         {
             var q = state.GetEntityQuery(ComponentType.ReadOnly<T>());
             return q.GetSingletonEntity();
